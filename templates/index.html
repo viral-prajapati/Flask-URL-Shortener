@@ -1,0 +1,49 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    {% if alert %}
+    <div class="alert alert-warning alert-dismissible fade show container text-center my-2 w-50" role="alert">
+        <strong>Enter a valid URL</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endif %}
+    <h1 class="container text-center my-5">URl Shortener</h1>
+    <form method='POST' class='container my-5 w-50'>
+        <div>
+            <div class="mb-3">
+                <input type="text" class="form-control" name="url" placeholder="Enter url">
+            </div>
+            <div class="col-auto">
+                <button type="submit" class="btn btn-primary mb-3">Short url</button>
+            </div>
+        </div>
+    </form>
+
+    {% if shorter %}
+        <div class="container text-center my-1">
+            <span class="fw-bold">Shorted URL: </span>
+            <input class='' type="text" value="{{ shorter }}" id="myInput">
+            <button class='' onclick="myFunction()">Copy text</button>
+        </div>
+    {% endif %}
+{% endblock %}
+
+{% block extrascript %}
+
+<script>
+    function myFunction() {
+        // Get the text field
+        var copyText = document.getElementById("myInput");
+      
+        // Select the text field
+        copyText.select();
+        copyText.setSelectionRange(0, 99999); // For mobile devices
+      
+        // Copy the text inside the text field
+        navigator.clipboard.writeText(copyText.value);
+        
+        // Alert the copied text
+        alert("Copied the text: " + copyText.value);
+    }
+</script>
+{% endblock %}

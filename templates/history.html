@@ -1,0 +1,27 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<h2 class="container text-center mt-5 mb-3">URL History</h2>
+<div class="container w-70">
+    <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Original URLs</th>
+            <th scope="col">Shorted URLs</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% if urls %}
+                {% for url in urls %}
+                <tr>
+                    <th scope="row">{{ loop.index }}</th>
+                    <td>{{ url.original_url }}</td>
+                    <td> <a href="{{ url.shorted_url }}">{{ url.shorted_url }}</a> </td>
+                </tr>
+                {% endfor %}
+            {% endif %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
